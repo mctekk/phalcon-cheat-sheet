@@ -25,7 +25,7 @@ ul.nav.affix { top: 30px; }
         <h1>making some test with title</h1>
     </header>
     <div class="row container">
-        <div class="col-xs-2" id="sidebar">
+        <div class="col-xs-2 clearfix" id="sidebar" style="position: relative;">
             <ul class="nav " id="sections-list">
                 <li class="active"><a href="#section-1">Section One</a></li>
                 <li><a href="#section-2">Section Two</a></li>
@@ -68,7 +68,7 @@ ul.nav.affix { top: 30px; }
 $(document).ready(function(){
     $("#sections-list").affix({
         offset: { 
-            top: 125 
+            top: 45
         }
     });
 });
