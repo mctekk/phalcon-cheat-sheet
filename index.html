@@ -1,74 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Example of Twitter Bootstrap 3 Affix Events</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Phalcon Cheat Sheet</title>
+    <meta name="description" content="Phalcon Cheat Sheet , Codes , function , methods of phalcon framework">
 
-<style type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/monokai_sublime.css">
 
-/* Custom style */
-body { background-color: #2f2f2f !important; }
-header { margin: 0px; position: relative; }
-ul.nav li.active a, ul.nav-tabs li.active a:hover { border-left: 2px solid #118a65; }
-ul.nav.affix { top: 30px; }
+    <style type="text/css">
 
-</style>
+        /* Custom style */
+        body { background-color: #2f2f2f !important; color: rgb(150, 150, 150); font: 14px/18px Ubuntu, sans-serif; }
+        .header{ background-color: #141414; height: 80px;}
+        ul.nav li.active a, ul.nav-tabs li.active a:hover { border-left: 3px solid #118a65; font-weight: 700; color: #118a65;}
+        .nav { margin-top: 15px; }
+        .nav li a { font-size: 14px; color: #7F938D;}
+        .nav > li > a:hover { background-color: transparent; text-decoration: underline; }
+        .logo-text {display: block; width: 330px; height: 77px; overflow: hidden; text-indent: -9999px; background: url('assets/images/logo.png'); margin-left: 20px; }
+        a.headerlink {color: #676767; font-size: 25px; float: left; margin-right: 13px;}
+        hr { border-top: 1px solid #3A3A3A !important; }
+        pre { background-color: #23241f; border: 1px solid #383838 !important; }
+        ul.nav li { height: 25px; } 
+
+    </style>
 
 </head>
 <body data-spy="scroll" data-target="#sidebar">
-	<header style="background-color: red;">
-        <!-- <h1>Phalcon cheat sheet</h1> -->
-        <h1>making some test with title</h1>
-    </header>
+	<div class="header">
+        <a href="http://www.phalconphp.com/en">
+            <span class="logo-text">Phalcon cheat sheet</span>
+        </a>
+    </div>
     <div class="row container">
-        <div class="col-xs-2 clearfix" id="sidebar" style="position: relative;">
-            <ul class="nav " id="sections-list">
-                <li class="active"><a href="#section-1">Section One</a></li>
-                <li><a href="#section-2">Section Two</a></li>
-                <li><a href="#section-3">Section Three</a></li>
-                <li><a href="#section-4">Section Four</a></li>
-                <li><a href="#section-5">Section Five</a></li>
+        <div class="col-xs-2 clearfix" id="sidebar">
+            <ul class="nav" id="sections-list">
+                <li class="active">
+                    <a href="#section-1">MVC</a>                    
+                </li>
+                <li><a href="#section-2">ORM</a></li>
+                <li><a href="#section-3">ODM for Mongo</a></li>
+                <li><a href="#section-4">Template Engine (Volt)</a></li>
+                <li><a href="#section-5">DI/IOC</a></li>
+                <li><a href="#section-6">Events Management</a></li>
+                <li><a href="#section-7">Encryption</a></li>
+                <li><a href="#section-8">HTTP Request</a></li>
+                <li><a href="#section-9">Response</a></li>
+                <li><a href="#section-10">Cookies</a></li>
+                <li><a href="#section-11">Escaping</a></li>
+                <li><a href="#section-12">Filtering</a></li>
+                <li><a href="#section-13">Forms Builder</a></li>
+                <li><a href="#section-14">Validation</a></li>
+                <li><a href="#section-15">Flash Messages</a></li>
+                <li><a href="#section-16">Cache</a></li>
+                <li><a href="#section-17">Pagination</a></li>
+                <li><a href="#section-18">Annotations</a></li>
+                <li><a href="#section-19">Security</a></li>
+                <li><a href="#section-20">Translations</a></li>
+                <li><a href="#section-21">Assets Management</a></li>
+                <li><a href="#section-22">Universal Auto-Loader</a></li>
+                <li><a href="#section-23">Logging</a></li>
+                <li><a href="#section-24">CLI</a></li>
             </ul>
         </div>
         <div class="col-xs-10">
-            <h2 id="section-1">Section One</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum id metus ac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet sagittis. In tincidunt orci sit amet elementum vestibulum. Vivamus fermentum in arcu in aliquam. Quisque aliquam porta odio in fringilla. Vivamus nisl leo, blandit at bibendum eu, tristique eget risus. Integer aliquet quam ut elit suscipit, id interdum neque porttitor. Integer faucibus ligula.</p>
-            <p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Ut tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit at lacus blandit, commodo iaculis justo viverra. Etiam vitae est arcu. Mauris vel congue dolor. Aliquam eget mi mi. Fusce quam tortor, commodo ac dui quis, bibendum viverra erat. Maecenas mattis lectus enim, quis tincidunt dui molestie euismod. Curabitur et diam tristique, accumsan nunc eu, hendrerit tellus.</p>
+
+            <!-- BEGIN MVC -->
+            <h2 id="section-1"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/applications.html">¶</a> MVC</h2>
+            <pre>
+                <code class="php">
+// Setting route file on service
+$di->set('router', function() 
+{
+    return include __DIR__ . '[route file]';
+}, true);
+
+// Create custom routes - index.php
+$application->useImplicitView(false);
+
+// Grouping routes under same controller
+$group = new \Phalcon\Mvc\Router\Group([
+    'namespace' => '[namespace separed with double \\]',
+    'controller' => '[controller name]',
+]);
+
+// All the routes start with /group
+$group->setPrefix('/group');
+
+// Adding route to group
+$group->add('[route]', ['action' => '[method]'])->setName('[keyword]');
+$router->mount($group);
+
+// Getting parameters using dispatcher service
+$this->dispatcher->getParam('[parameter]');
+
+// Ways to define a route
+$router->add(
+    '[route]',
+    array(
+        'controller' => '[controller name]',
+        'action' => '[method name]',
+    )
+);
+
+// Single flexible route
+$router->add(
+    '/admin/:controller/a/:action/:params',
+    array(
+        'controller' => 1,
+        'action' => 2,
+        'params' => 3,
+    )
+);
+
+
+// Flexible route with parameters with name
+$router->add(
+    '/news/([0-9]{4})/([0-9]{2})/([0-9]{2})/:params',
+    array(
+        'controller' => 'posts',
+        'action' => 'show',
+        'year' => 1, // ([0-9]{4})
+        'month' => 2, // ([0-9]{2})
+        'day' => 3, // ([0-9]{2})
+        'params' => 4, // :params
+    )
+);
+
+// Route with parameters with name
+$router->add(
+    '/documentation/{chapter}/{name}.{type:[a-z]+}',
+    array(
+        'controller' => 'documentation',
+        'action'     => 'show'
+    )
+);
+
+// Short form using statics
+$router->add("/posts/{year:[0-9]+}/{title:[a-z\-]+}", "Posts::show");
+
+// Array form
+$router->add(
+    "/posts/([0-9]+)/([a-z\-]+)",
+    array(
+       "controller" => "posts",
+       "action"     => "show",
+       "year"       => 1,
+       "title"      => 2,
+    )
+);
+
+// This route only will be matched if the HTTP method is GET
+$router->addGet("/products/edit/{id}", "Products::edit");
+
+// This route only will be matched if the HTTP method is POST
+$router->addPost("/products/save", "Products::save");
+
+// This route will be matched if the HTTP method is POST or PUT
+$router->add("/products/update")->via(array("POST", "PUT"));
+
+// Getting the processed controller
+$router->getControllerName();
+
+// Getting the processed action
+$router->getActionName();
+
+//Get the matched route
+$route = $router->getMatchedRoute();
+
+// Generate a link with predefined route
+$this->url->get(['for' => '<route keyword>', 'paramN' => $paramN]);
+                </code>
+            </pre>
             <hr>
-            <h2 id="section-2">Section Two</h2>
-            <p>Nullam hendrerit justo non leo aliquet imperdiet. Etiam in sagittis lectus. Suspendisse ultrices placerat accumsan. Mauris quis dapibus orci. In dapibus velit blandit pharetra tincidunt. Quisque non sapien nec lacus condimentum facilisis ut iaculis enim. Sed viverra interdum bibendum. Donec ac sollicitudin dolor. Sed fringilla vitae lacus at rutrum. Phasellus congue vestibulum ligula sed consequat.</p>
-            <p>Vestibulum consectetur scelerisque lacus, ac fermentum lorem convallis sed. Nam odio tortor, dictum quis malesuada at, pellentesque vitae orci. Vivamus elementum, felis eu auctor lobortis, diam velit egestas lacus, quis fermentum metus ante quis urna. Sed at facilisis libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum bibendum blandit dolor. Nunc orci dolor, molestie nec nibh in, hendrerit tincidunt ante. Vivamus sem augue, hendrerit non sapien in, mollis ornare augue.</p>
+            <!-- END MVC -->
+
+            <!-- BEGIN DISPATCHING -->
+            <h2><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/dispatching.html">¶</a> Dispatching Controllers</h2>
+            <pre>
+                <code class="php">
+// Forward flow to the index action
+$this->dispatcher->forward(array(
+    "controller" => "post",
+    "action" => "index"
+));
+
+// Forward flow to another action in the current controller
+$this->dispatcher->forward(array(
+    "action" => "search"
+));
+
+// Forward flow to another action in the current controller passing parameters
+$this->dispatcher->forward(array(
+    "action" => "search",
+    "params" => array(1, 2, 3)
+));
+
+// Get the post's title passed in the URL as parameter or prepared in an event
+$title = $this->dispatcher->getParam('param');
+                </code>
+            </pre>
+            <!-- END DISPATCHING -->
             <hr>
-            <h2 id="section-3">Section Three</h2>
-            <p>Integer pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget sapien vel, porttitor bibendum enim. Donec sed nibh vitae lorem porttitor blandit in nec ante. Pellentesque vitae metus ipsum. Phasellus sed nunc ac sem malesuada condimentum. Etiam in aliquam lectus. Nam vel sapien diam. Donec pharetra id arcu eget blandit. Proin imperdiet mattis augue in porttitor. Quisque tempus enim id lobortis feugiat. Suspendisse tincidunt risus quis dolor fringilla blandit. Ut sed sapien at purus lacinia porttitor. Nullam iaculis, felis a pretium ornare, dolor nisl semper tortor, vel sagittis lacus est consequat eros. Sed id pretium nisl. Curabitur dolor nisl, laoreet vitae aliquam id, tincidunt sit amet mauris.</p>
-            <p>Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget ante rutrum adipiscing. Cras interdum ipsum mattis, tempus mauris vel, semper ipsum. Duis sed dolor ut enim lobortis pellentesque ultricies ac ligula. Pellentesque convallis elit nisi, id vulputate ipsum ullamcorper ut. Cras ac pulvinar purus, ac viverra est. Suspendisse potenti. Integer pellentesque neque et elementum tempus. Curabitur bibendum in ligula ut rhoncus.</p>
-            <p>Quisque pharetra velit id velit iaculis pretium. Nullam a justo sed ligula porta semper eu quis enim. Pellentesque pellentesque, metus at facilisis hendrerit, lectus velit facilisis leo, quis volutpat turpis arcu quis enim. Nulla viverra lorem elementum interdum ultricies. Suspendisse accumsan quam nec ante mollis tempus. Morbi vel accumsan diam, eget convallis tellus. Suspendisse potenti.</p>
+
+            <!-- BEGIN MICRO -->
+            <h2><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/dispatching.html">¶</a> Micro applications</h2>
+            <pre>
+                <code class="php">
+// Without controller
+$application->get('/', function(){
+    echo 'Your app it\'s up';
+});
+
+// Using controller, same for get|post|put|delete
+$application->post('[route]', [
+    [instance of your controller]
+    '[method]'
+]);
+
+// Not found route
+$app->notFound(function () use ($app) {
+    $app->response->setStatusCode(404, "Not Found")->sendHeaders();
+    echo 'This is crazy, but this page was not found!';
+});
+                </code>
+            </pre>
             <hr>
-            <h2 id="section-4">Section Four</h2>
-            <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
-            <p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Ut tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit at lacus blandit, commodo iaculis justo viverra. Etiam vitae est arcu. Mauris vel congue dolor. Aliquam eget mi mi. Fusce quam tortor, commodo ac dui quis, bibendum viverra erat. Maecenas mattis lectus enim, quis tincidunt dui molestie euismod. Curabitur et diam tristique, accumsan nunc eu, hendrerit tellus.</p>
-            <p>Phasellus fermentum, neque sit amet sodales tempor, enim ante interdum eros, eget luctus ipsum eros ut ligula. Nunc ornare erat quis faucibus molestie. Proin malesuada consequat commodo. Mauris iaculis, eros ut dapibus luctus, massa enim elementum purus, sit amet tristique purus purus nec felis. Morbi vestibulum sapien eget porta pulvinar. Nam at quam diam. Proin rhoncus, felis elementum accumsan dictum, felis nisi vestibulum tellus, et ultrices risus felis in orci. Quisque vestibulum sem nisl, vel congue leo dictum nec. Cras eget est at velit sagittis ullamcorper vel et lectus. In hac habitasse platea dictumst. Etiam interdum iaculis velit, vel sollicitudin lorem feugiat sit amet. Etiam luctus, quam sed sodales aliquam, lorem libero hendrerit urna, faucibus rhoncus massa nibh at felis. Curabitur ac tempus nulla, ut semper erat. Vivamus porta ullamcorper sem, ornare egestas mauris facilisis id.</p>
-            <p>Ut ut risus nisl. Fusce porttitor eros at magna luctus, non congue nulla eleifend. Aenean porttitor feugiat dolor sit amet facilisis. Pellentesque venenatis magna et risus commodo, a commodo turpis gravida. Nam mollis massa dapibus urna aliquet, quis iaculis elit sodales. Sed eget ornare orci, eu malesuada justo. Nunc lacus augue, dictum quis dui id, lacinia congue quam. Nulla sem sem, aliquam nec dolor ac, tempus convallis nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla suscipit convallis iaculis. Quisque eget commodo ligula. Praesent leo dui, facilisis quis eleifend in, aliquet vitae nunc. Suspendisse fermentum odio ac massa ultricies pellentesque. Fusce eu suscipit massa.</p>
+            <!-- END MICRO -->
+
+            <!-- BEGIN ORM -->
+            <h2 id="section-2"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/models.html">¶</a> ORM</h2>            
+            <i>Pending contribution...</i>
             <hr>
-            <h2 id="section-5">Section Five</h2>
-            <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
-            <p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
-            <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
-            <p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
-            <p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
+            <!-- END ORM -->
+
+
+            <!-- BEGIN ODM -->
+            <h2 id="section-3"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/odm.html">¶</a> ODM for Mongo</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END ORM --> 
+
+            <!-- BEGIN VOLT -->
+            <h2 id="section-4"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/volt.html">¶</a> Template Engine (Volt)</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END VOLT --> 
+
+            <!-- BEGIN DI/IOC -->
+            <h2 id="section-5"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/di.html">¶</a> DI/IOC</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END DI/IOC -->
+
+            <!-- BEGIN EM -->
+            <h2 id="section-6"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/events.html">¶</a> Events Management</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END EM -->
+
+            <!-- BEGIN ENCRYPTION -->
+            <h2 id="section-7"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/crypt.html">¶</a> Encryption</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END ENCRYPTION --> 
+
+            <!-- BEGIN HTTP -->
+            <h2 id="section-8"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/request.html">¶</a> HTTP Request</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END HTTP -->
+
+            <!-- BEGIN RESPONSE -->
+            <h2 id="section-9"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/response.html">¶</a> Response</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END RESPONSE -->  
+
+            <!-- BEGIN COOKIES -->
+            <h2 id="section-10"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cookies.html">¶</a> Cookies</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END COOKIES -->  
+
+            <!-- BEGIN ESCAPING -->
+            <h2 id="section-11"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/escaper.html">¶</a> Escaping</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END ESCAPING -->
+
+            <!-- BEGIN FILTERING -->
+            <h2 id="section-12"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/filter.html">¶</a> Filtering</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END FILTERING --> 
+
+            <!-- BEGIN FORM -->
+            <h2 id="section-13"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/forms.html">¶</a> Forms Builder</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END FORM -->   
+
+            <!-- BEGIN VALIDATION -->
+            <h2 id="section-14"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/validation.html">¶</a> Validation</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END VALIDATION --> 
+
+            <!-- BEGIN FLASH -->
+            <h2 id="section-15"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/flash.html">¶</a> Flash Messages</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END FLASH -->  
+
+            <!-- BEGIN CACHE -->
+            <h2 id="section-16"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cache.html">¶</a> Cache</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END CACHE --> 
+
+            <!-- BEGIN PAGINATION -->
+            <h2 id="section-17"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/pagination.html">¶</a> Pagination</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END PAGINATION --> 
+
+            <!-- BEGIN ANNOTATIONS -->
+            <h2 id="section-18"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/annotations.html">¶</a> Annotations</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END ANNOTATIONS --> 
+
+            <!-- BEGIN SECURITY -->
+            <h2 id="section-19"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/security.html">¶</a> Security</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END SECURITY -->   
+
+            <!-- BEGIN TRANSLATE -->
+            <h2 id="section-20"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/translate.html">¶</a> Translations</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END TRANSLATE -->
+
+            <!-- BEGIN ASSETS -->
+            <h2 id="section-21"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/assets.html">¶</a> Assets Management</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END ASSETS -->  
+
+            <!-- BEGIN LOADER -->
+            <h2 id="section-22"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/loader.html">¶</a> Universal Auto-Loader</h2>            
+            <pre>
+                <code class="php">
+// Setting namespaces
+$loader->registerNamespaces(
+    array(
+       'Store\Admin\Controllers'    => "../bundles/admin/controllers/",
+       'Store\Admin\Models'    => "../bundles/admin/models/",
+    )
+);
+                </code>
+            </pre> 
+            <hr>
+            <!-- END LOADER -->                                                                                                                                                                                                
+
+            <!-- BEGIN LOGGING -->
+            <h2 id="section-23"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/logging.html">¶</a> Logging</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END LOGGING -->
+
+            <!-- BEGIN CLI -->
+            <h2 id="section-24"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cli.html">¶</a> CLI</h2>            
+            <i>Pending contribution...</i>
+            <hr>
+            <!-- END CLI -->
+
         </div>
     </div>
 </body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script> -->
+<script src="assets/js/highlight-8.4.min.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
+    hljs.initHighlightingOnLoad();
     $("#sections-list").affix({
         offset: { 
-            top: 45
+            top: 0
         }
     });
 });
