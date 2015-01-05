@@ -232,7 +232,71 @@ $app->notFound(function () use ($app) {
 
             <!-- BEGIN ORM -->
             <h2 id="section-2"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/models.html">¶</a> ORM</h2>            
-            <i>Pending contribution...</i>
+            <pre>
+                <code class="php">
+
+// Find record by its primary id = 3
+$robot = Robots::findFirst(3);
+
+// Find one record with conditions + bind params and all phalcon options
+$robots = Robots::findFirst([
+            "columns” => "id, name”,
+            "conditions" => "type = ?1",
+            "bind"       => [1 => "virtual"],
+            "order" => "id DESC" ,
+            "limit" => "limit" => 10 / "limit" => ["number" => 10, "offset" => 5],
+            "group” => "name, status”,
+            "cache” => array("lifetime” => 3600, "key” => "my-find-key”),
+           ]);
+
+// Find all record with  conditions + bind params and all phalcon options
+$robots = Robots::find([
+            "columns” => "id, name”,
+            "conditions" => "type = ?1",
+            "bind"       => [1 => "virtual"],
+            "order" => "id DESC" ,
+            "limit" => "limit" => 10 / "limit" => ["number" => 10, "offset" => 5],
+            "group” => "name, status”,
+            "cache” => array("lifetime” => 3600, "key” => "my-find-key”),
+           ]);
+
+// Using any Models Query Builder
+$model::query() 
+    ->where('field = :bindparam:')
+    ->andWhere( "field2 = '1' ")
+    ->bind( ['bindparam' => '2'] )
+    ->order('field ASC')
+    ->limit(10)
+    ->cache(['key' => 'optionalifyouwant' , 'lifetime' => 'optionalalso'])
+    ->execute();
+
+// Catch Save / Update Model Exceptions
+$model = new News();
+$model->title = 'Update Phalcon is the fastest php framework';
+$model->content = 'Use version 1.3+ or v2';
+
+if (!$model->save())
+{
+    //messages
+    foreach ($model->getMessages() as $message)
+    {
+        //throw error
+       throw new Exception($message);
+       
+       //or flash message in controller
+       $this->flash->error($message);
+
+    }
+}
+
+// Validate if we have records 
+if($robots) if no records found it returns false
+
+// Count the result set para saber si trajo algo
+$robots->count();
+
+                </code>
+            </pre>
             <hr>
             <!-- END ORM -->
 
@@ -269,7 +333,66 @@ $app->notFound(function () use ($app) {
 
             <!-- BEGIN HTTP -->
             <h2 id="section-8"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/request.html">¶</a> HTTP Request</h2>            
-            <i>Pending contribution...</i>
+             <pre>
+                <code class="php">
+// Verify if its Post or Ajax request
+$request = new Phalcon\Http\Request();
+if ($request->isPost() == true) {
+    if ($request->isAjax() == true) {
+            echo 'Request was made using POST and AJAX';
+    }
+}
+
+// Gets a variable from the $_REQUEST superglobal applying filters if needed. If no parameters are given the $_REQUEST superglobal is returned
+
+//Returns value from $_REQUEST["user_email"] without sanitizing
+$userEmail = $request->get("user_email");
+
+//Returns value from $_REQUEST["user_email"] with sanitizing
+$userEmail = $request->get("user_email", "email");
+
+// Gets a variable from the $_POST superglobal applying filters if needed If no parameters are given the $_POST superglobal is returned
+
+//Returns value from $_POST["user_email"] without sanitizing
+$userEmail = $request->getPost("user_email");
+
+//Returns value from $_POST["user_email"] with sanitizing
+$userEmail = $request->getPost("user_email", "email");
+
+// Gets a variable from put request
+
+$userEmail = $request->getPut("user_email");
+
+$userEmail = $request->getPut("user_email", "email");
+
+// Gets variable from $_GET superglobal applying filters if needed If no parameters are given the $_GET superglobal is returned
+
+//Returns value from $_GET["id"] without sanitizing
+$id = $request->getQuery("id");
+
+//Returns value from $_GET["id"] with sanitizing
+$id = $request->getQuery("id", "int");
+
+//Returns value from $_GET["id"] with a default value
+$id = $request->getQuery("id", null, 150);
+
+// Gets HTTP header from request data
+
+$request->getHeader('Name');
+
+// Gets information about schema, host and port used by the request
+
+$request->getClientAddress();
+
+// Checks whether HTTP method is POST. if $_SERVER[‘REQUEST_METHOD’]==’POST’ || GET || PUT || PATCH || HEAD || DELETE  || OPTIONS
+
+$request->isPost();
+$request->isGet();
+$request->isPut();
+
+
+                </code>
+            </pre>
             <hr>
             <!-- END HTTP -->
 
