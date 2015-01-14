@@ -270,14 +270,14 @@ $di->set('view', function() {
 {# Filters #}
 
 {# e or escape filter #}
-{{ "<h1>Hello<h1>"|e }}
-{{ "<h1>Hello<h1>"|escape }}
+{{ "&lt;h1&gt;Hello&lt;/h1&gt;"|e }}
+{{ "&lt;h1&gt;Hello&lt;/h1&gt;"|escape }}
 
 {# trim filter #}
 {{ "   hello   "|trim }}
 
 {# striptags filter #}
-{{ "<h1>Hello<h1>"|striptags }}
+{{ "&lt;h1&gt;Hello&lt;/h1&gt;"|striptags }}
 
 {# slashes filter #}
 {{ "'this is a string'"|slashes }}
