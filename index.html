@@ -309,7 +309,409 @@ $robots->count();
 
             <!-- BEGIN VOLT -->
             <h2 id="section-4"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/volt.html">¶</a> Template Engine (Volt)</h2>            
-            <i>Pending contribution...</i>
+            <pre>
+                <code class="php">
+
+// Registering Volt as template engine
+$di->set('view', function() {
+    $view = new \Phalcon\Mvc\View();
+    $view->setViewsDir('../app/views/');
+    $view->registerEngines(array(
+        ".volt" => 'Phalcon\Mvc\View\Engine\Volt'
+    ));
+    return $view;
+});
+
+{# Variables #}
+
+{# for $post->title #}
+{{ post.title }} 
+
+{# for $post['title'] #}
+{{ post['title'] }}
+
+
+{# Filters #}
+
+{# e or escape filter #}
+{{ "&lt;h1&gt;Hello&lt;/h1&gt;"|e }}
+{{ "&lt;h1&gt;Hello&lt;/h1&gt;"|escape }}
+
+{# trim filter #}
+{{ "   hello   "|trim }}
+
+{# striptags filter #}
+{{ "&lt;h1&gt;Hello&lt;/h1&gt;"|striptags }}
+
+{# slashes filter #}
+{{ "'this is a string'"|slashes }}
+
+{# stripslashes filter #}
+{{ "\'this is a string\'"|stripslashes }}
+
+{# capitalize filter #}
+{{ "hello"|capitalize }}
+
+{# lower filter #}
+{{ "HELLO"|lower }}
+
+{# upper filter #}
+{{ "hello"|upper }}
+
+{# length filter #}
+{{ "robots"|length }}
+{{ [1, 2, 3]|length }}
+
+{# nl2br filter #}
+{{ "some\ntext"|nl2br }}
+
+{# sort filter #}
+{% set sorted=[3, 1, 2]|sort %}
+
+{# keys filter #}
+{% set keys=['first': 1, 'second': 2, 'third': 3]|keys %}
+
+{# json_encode filter #}
+{% robots|json_encode %}
+
+{# json_decode filter #}
+{% set decoded='{"one":1,"two":2,"three":3}'|json_decode %}
+
+{# url_encode filter #}
+{{ post.permanent_link|url_encode }}
+
+{# convert_encoding filter #}
+{{ "désolé"|convert_encoding('utf8', 'latin1') }}
+
+
+{# Comments #}
+{# note: this is a comment
+    {% set price = 100; %}
+#}
+
+
+{# Loops #}
+
+{# Loop for #} 
+{% for robot in robots %}
+    {{ robot.name|e }}
+{% endfor  %}
+
+{# Loop for with keys #}
+{% for key, value in robots %}
+    {{ value.name|e }}
+{% endfor  %}
+
+{# Loop with else condition #}
+{% for key, value in robots %}
+    {{ value.name|e }}
+{% else %}
+    There are no robots to show
+{% endfor  %}
+
+{# Break loop control #}
+{% break %}
+
+{# If statement #}
+{% if robot.type == "cyborg" %}
+    {{ robot.name|e }}
+{% endif %}
+
+{# If else statement #}
+{% if robot.type == "cyborg" %}
+    {{ robot.name|e }}
+{% else %}
+    {{ robot.name|e }} (not a cyborg)
+{% endif %}
+
+{# Elseif statement #}
+{% if robot.type == "cyborg" %}
+    {{ robot.name|e }}
+{% elseif robot.type == "virtual" %}
+    Robot is virtual
+{% elseif robot.type == "mechanical" %}
+    Robot is mechanical    
+{% else %}
+    {{ robot.name|e }} (not a cyborg)
+{% endif %}
+
+
+{# Loop context #}
+
+{# The current iteration of the loop. (1 indexed) #}
+loop.index
+
+{# The current iteration of the loop. (0 indexed) #}
+loop.index0
+
+{# The number of iterations from the end of the loop (1 indexed) #}
+loop.revindex
+
+{# The number of iterations from the end of the loop (0 indexed) #}
+loop.revindex0
+
+{# True if in the first iteration. #}
+loop.first
+
+{# True if in the last iteration. #}
+loop.last
+
+{# The number of items to iterate #}
+loop.length
+
+{# Setting values to var #}
+{% set fruits = ['Apple', 'Banana', 'Orange'] %}
+{% set name = robot.name %}
+
+{# Multiple assignments #}
+{% set fruits = ['Apple', 'Banana', 'Orange'], name = robot.name, active = true %}
+
+{# Compound assignment #}
+{% set price += 100.00 %}
+{% set age *= 5 %}
+
+{# Simple expression #}
+{{ (1 + 1) * 2 }}
+
+{# Expression evaluated without be printed #}
+{% do (1 + 1) * 2 %}
+
+
+{# Arrays #}
+
+{# Simple array #}
+{{ ['Apple', 'Banana', 'Orange'] }}
+
+{# Other way simple array #}
+{{ ['Apple', 1, 2.5, false, null] }}
+
+{# Multidimensional array #}
+{{ [[1, 2], [3, 4], [5, 6]] }}
+
+{# Hash-style array #}
+{{ ['first': 1, 'second': 4/2, 'third': '3'] }}
+
+{# Curly braces to define arrays #}
+{% set myArray = {'Apple', 'Banana', 'Orange'} %}
+
+
+{# Operators #}
+
+{# Return true if the left or right operand is evaluated as true #}
+or
+
+{# Return true if both left and right operands are evaluated as true #}
+and
+
+{# Negates an expression #}
+not
+
+{# Parenthesis groups expressions #}
+(expr)
+
+{# Concatenates both operands {{ “hello ” ~ “world” }} #}
+~
+
+{# Applies a filter in the right operand to the left {{ “hello”|uppercase }} #}
+|
+
+{# Creates a range {{ ‘a’..’z’ }} {{ 1..10 }} #}
+..
+
+{# Same as == (equals), also performs tests #}
+is
+
+{# To check if an expression is contained into other expressions if “a” in “abc” #}
+in
+
+{# Same as != (not equals) #}
+is not
+
+{# Ternary operator. The same as the PHP ternary operator #}
+‘a’ ? ‘b’ : ‘c’
+
+{# Increments a value #}
+++
+
+{# Decrements a value #}
+--
+
+
+{# Built-in tests available #}
+
+{# Checks if a variable is defined (isset) #}
+defined
+
+{# Checks if a variable is empty #}
+empty
+
+{# Checks if a numeric value is even #}
+even
+
+{# Checks if a numeric value is odd #}
+odd
+
+{# Checks if value is numeric #}
+numeric
+
+{# Checks if value is scalar (not an array or object) #}
+scalar
+
+{# Checks if a value is iterable. Can be traversed by a “for” statement #}
+iterable
+
+{# Checks if a value is divisible by other value #}
+divisibleby
+
+{# Checks if a value is identical to other value #}
+sameas
+
+{# Checks if a value is of the specified type #}
+type
+
+
+{# Macros #}
+
+{%- macro related_bar(related_links) %}
+    {# Generate html links #}
+{%- endmacro %}
+
+{# Print related links #}
+{{ related_bar(links) }}
+
+
+{# Tag Helpers #}
+
+{# Include js file #}
+{{ javascript_include("js/jquery.js") }}
+
+{# Tags helpers #}
+Phalcon\Tag::linkTo                     link_to()
+Phalcon\Tag::textField                  text_field()
+Phalcon\Tag::passwordField              password_field()
+Phalcon\Tag::hiddenField                hidden_field()
+Phalcon\Tag::fileField                  file_field()
+Phalcon\Tag::checkField                 check_field()
+Phalcon\Tag::radioField                 radio_field()
+Phalcon\Tag::dateField                  date_field()
+Phalcon\Tag::emailField                 email_field()
+Phalcon\Tag::numberField                number_field()
+Phalcon\Tag::submitButton               submit_button()
+Phalcon\Tag::selectStatic               select_static()
+Phalcon\Tag::select                     select()
+Phalcon\Tag::textArea                   text_area()
+Phalcon\Tag::form                       form()
+Phalcon\Tag::endForm                    end_form()
+Phalcon\Tag::getTitle                   get_title()
+Phalcon\Tag::stylesheetLink             stylesheet_link()
+Phalcon\Tag::javascriptInclude          javascript_include()
+Phalcon\Tag::image                      image()
+Phalcon\Tag::friendlyTitle              friendly_title()
+
+
+{# Functions #}
+
+{# Includes the content produced in a previous rendering stage #}
+content
+
+{# Same as ‘content’ #}
+get_content
+
+{# Dynamically loads a partial view in the current template #}
+partial
+
+{# Render the contents of the parent block #}
+super
+
+{# Calls the PHP function with the same name #}
+time
+
+{# Calls the PHP function with the same name #}
+date
+
+{# Calls the PHP function ‘var_dump’ #}
+dump
+
+{# Returns the current version of the framework #}
+version
+
+{# Reads a PHP constant #}
+constant
+
+{# Generate a URL using the ‘url’ service #}
+url
+
+
+{# View Integration #}
+
+{# Simple include of a partial #}
+{{ partial("partials/footer") }}
+
+{# Passing extra variables #}
+{{ partial("partials/footer", ['links': $links]) }}
+
+{# Simple include of a partial #}
+{% include "partials/footer" %}
+
+{# Passing extra variables #}
+{% include "partials/footer" with ['links': links] %}
+
+
+{# Template Inheritance  #}
+
+{# Blocks for hierarchy #}
+
+{# templates/base.volt #}
+{% block head %}
+    {# Your content here #}
+{% endblock %}
+
+{# templates/index1.volt #}
+{% extends "templates/base.volt" %}
+{% block head %}
+    {# Include this in head #}
+{% endblock %}
+
+{# Keep values from father #}
+{{ super() }}
+
+
+{# Autoescape mode #}
+
+{# Autoescaped true #}
+{% autoescape true %}
+    {# code here #}
+{% endautoescape %}
+
+{# Autoescaped false #}
+{% autoescape false %}
+    {# code here #}
+{% endautoescape %}
+
+{# Caching view fragments #}
+
+{# Cache view #}
+{% cache "sidebar" %}
+    <!-- generate this content is slow so we are going to cache it -->
+{% endcache %}
+
+{# cache the sidebar by 1 hour #}
+{% cache "sidebar" 3600 %}
+    <!-- generate this content is slow so we are going to cache it -->
+{% endcache %}
+
+{# Cache with expresion #}
+{% cache ("article-" ~ post.id) 3600 %}
+    <!-- generate this content is slow so we are going to cache it -->
+{% endcache %}
+
+
+{# Inject service #}
+
+{# Inject the 'flash' service #}
+{{ flash.output() }}
+                </code>
+            </pre>
             <hr>
             <!-- END VOLT --> 
 
