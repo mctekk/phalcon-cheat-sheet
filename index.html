@@ -854,7 +854,68 @@ $request->isPut();
 
             <!-- BEGIN ANNOTATIONS -->
             <h2 id="section-18"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/annotations.html">¶</a> Annotations</h2>            
-            <i>Pending contribution...</i>
+            <code class="php">
+/**
+ * Simple Annotation
+ *
+ * @SomeAnnotation
+ */
+
+/**
+ * Annotation with parameters
+ *
+ * @SomeAnnotation("hello", "world", 1, 2, 3, false, true)
+ */
+
+/**
+ * Annotation with named parameters
+ *
+ * @SomeAnnotation(first="hello", second="world", third=1)
+ * @SomeAnnotation(first: "hello", second: "world", third: 1)
+ */
+
+/**
+ * Passing an array
+ *
+ * @SomeAnnotation([1, 2, 3, 4])
+ * @SomeAnnotation({1, 2, 3, 4})
+ */
+
+/**
+ * Passing a hash as parameter
+ *
+ * @SomeAnnotation({first=1, second=2, third=3})
+ * @SomeAnnotation({'first'=1, 'second'=2, 'third'=3})
+ * @SomeAnnotation({'first': 1, 'second': 2, 'third': 3})
+ * @SomeAnnotation(['first': 1, 'second': 2, 'third': 3])
+ */
+
+/**
+ * Nested arrays/hashes
+ *
+ * @SomeAnnotation({"name"="SomeName", "other"={
+ *      "foo1": "bar1", "foo2": "bar2", {1, 2, 3},
+ * }})
+ */
+
+/**
+ * Nested Annotations
+ *
+ * @SomeAnnotation(first=@AnotherAnnotation(1, 2, 3))
+ */
+
+// A simple example of reading annotations
+
+$reader = new \Phalcon\Annotations\Adapter\Memory();
+$reflector = $reader->get('Example');
+$annotations = $reflector->getClassAnnotations();
+
+foreach ($annotations as $annotation) {
+    echo $annotation->getName(), PHP_EOL;
+    echo $annotation->numberArguments(), PHP_EOL;
+    print_r($annotation->getArguments());
+}
+                </code>
             <hr>
             <!-- END ANNOTATIONS --> 
 
