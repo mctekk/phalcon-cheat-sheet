@@ -739,8 +739,8 @@ url
                 <code class="php">
 // Verify if its Post or Ajax request
 $request = new Phalcon\Http\Request();
-if ($request->isPost() == true) {
-    if ($request->isAjax() == true) {
+if ($request->isPost()) {
+    if ($request->isAjax()) {
             echo 'Request was made using POST and AJAX';
     }
 }
