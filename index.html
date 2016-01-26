@@ -21,7 +21,7 @@
         a.headerlink {color: #676767; font-size: 25px; float: left; margin-right: 13px;}
         hr { border-top: 1px solid #3A3A3A !important; }
         pre { background-color: #23241f; border: 1px solid #383838 !important; }
-        ul.nav li { height: 25px; } 
+        ul.nav li { height: 25px; }
 
     </style>
 
@@ -38,7 +38,7 @@
         <div class="col-xs-2 clearfix" id="sidebar">
             <ul class="nav" id="sections-list">
                 <li class="active">
-                    <a href="#section-1">MVC</a>                    
+                    <a href="#section-1">MVC</a>
                 </li>
                 <li><a href="#section-2">ORM</a></li>
                 <li><a href="#section-3">ODM for Mongo</a></li>
@@ -72,7 +72,7 @@
             <pre>
                 <code class="php">
 // Setting route file on service
-$di->set('router', function() 
+$di->set('router', function()
 {
     return include __DIR__ . '[route file]';
 }, true);
@@ -231,7 +231,7 @@ $app->notFound(function () use ($app) {
             <!-- END MICRO -->
 
             <!-- BEGIN ORM -->
-            <h2 id="section-2"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/models.html">¶</a> ORM</h2>            
+            <h2 id="section-2"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/models.html">¶</a> ORM</h2>
             <pre>
                 <code class="php">
 
@@ -240,7 +240,7 @@ $robot = Robots::findFirst(3);
 
 // Find one record with conditions + bind params and all phalcon options
 $robots = Robots::findFirst([
-            "columns” => "id, name”,
+            "columns" => "id, name”,
             "conditions" => "type = ?1",
             "bind"       => [1 => "virtual"],
             "order" => "id DESC" ,
@@ -261,7 +261,7 @@ $robots = Robots::find([
            ]);
 
 // Using any Models Query Builder
-$model::query() 
+$model::query()
     ->where('field = :bindparam:')
     ->andWhere( "field2 = '1' ")
     ->bind( ['bindparam' => '2'] )
@@ -282,14 +282,14 @@ if (!$model->save())
     {
         //throw error
        throw new Exception($message);
-       
+
        //or flash message in controller
        $this->flash->error($message);
 
     }
 }
 
-// Validate if we have records 
+// Validate if we have records
 if($robots) if no records found it returns false
 
 // Count the result set para saber si trajo algo
@@ -302,13 +302,13 @@ $robots->count();
 
 
             <!-- BEGIN ODM -->
-            <h2 id="section-3"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/odm.html">¶</a> ODM for Mongo</h2>            
+            <h2 id="section-3"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/odm.html">¶</a> ODM for Mongo</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END ORM --> 
+            <!-- END ORM -->
 
             <!-- BEGIN VOLT -->
-            <h2 id="section-4"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/volt.html">¶</a> Template Engine (Volt)</h2>            
+            <h2 id="section-4"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/volt.html">¶</a> Template Engine (Volt)</h2>
             <pre>
                 <code class="php">
 
@@ -325,7 +325,7 @@ $di->set('view', function() {
 {# Variables #}
 
 {# for $post->title #}
-{{ post.title }} 
+{{ post.title }}
 
 {# for $post['title'] #}
 {{ post['title'] }}
@@ -392,7 +392,7 @@ $di->set('view', function() {
 
 {# Loops #}
 
-{# Loop for #} 
+{# Loop for #}
 {% for robot in robots %}
     {{ robot.name|e }}
 {% endfor  %}
@@ -430,7 +430,7 @@ $di->set('view', function() {
 {% elseif robot.type == "virtual" %}
     Robot is virtual
 {% elseif robot.type == "mechanical" %}
-    Robot is mechanical    
+    Robot is mechanical
 {% else %}
     {{ robot.name|e }} (not a cyborg)
 {% endif %}
@@ -713,28 +713,28 @@ url
                 </code>
             </pre>
             <hr>
-            <!-- END VOLT --> 
+            <!-- END VOLT -->
 
             <!-- BEGIN DI/IOC -->
-            <h2 id="section-5"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/di.html">¶</a> DI/IOC</h2>            
+            <h2 id="section-5"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/di.html">¶</a> DI/IOC</h2>
             <i>Pending contribution...</i>
             <hr>
             <!-- END DI/IOC -->
 
             <!-- BEGIN EM -->
-            <h2 id="section-6"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/events.html">¶</a> Events Management</h2>            
+            <h2 id="section-6"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/events.html">¶</a> Events Management</h2>
             <i>Pending contribution...</i>
             <hr>
             <!-- END EM -->
 
             <!-- BEGIN ENCRYPTION -->
-            <h2 id="section-7"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/crypt.html">¶</a> Encryption</h2>            
+            <h2 id="section-7"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/crypt.html">¶</a> Encryption</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END ENCRYPTION --> 
+            <!-- END ENCRYPTION -->
 
             <!-- BEGIN HTTP -->
-            <h2 id="section-8"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/request.html">¶</a> HTTP Request</h2>            
+            <h2 id="section-8"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/request.html">¶</a> HTTP Request</h2>
              <pre>
                 <code class="php">
 // Verify if its Post or Ajax request
@@ -799,61 +799,61 @@ $request->isPut();
             <!-- END HTTP -->
 
             <!-- BEGIN RESPONSE -->
-            <h2 id="section-9"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/response.html">¶</a> Response</h2>            
+            <h2 id="section-9"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/response.html">¶</a> Response</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END RESPONSE -->  
+            <!-- END RESPONSE -->
 
             <!-- BEGIN COOKIES -->
-            <h2 id="section-10"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cookies.html">¶</a> Cookies</h2>            
+            <h2 id="section-10"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cookies.html">¶</a> Cookies</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END COOKIES -->  
+            <!-- END COOKIES -->
 
             <!-- BEGIN ESCAPING -->
-            <h2 id="section-11"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/escaper.html">¶</a> Escaping</h2>            
+            <h2 id="section-11"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/escaper.html">¶</a> Escaping</h2>
             <i>Pending contribution...</i>
             <hr>
             <!-- END ESCAPING -->
 
             <!-- BEGIN FILTERING -->
-            <h2 id="section-12"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/filter.html">¶</a> Filtering</h2>            
+            <h2 id="section-12"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/filter.html">¶</a> Filtering</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END FILTERING --> 
+            <!-- END FILTERING -->
 
             <!-- BEGIN FORM -->
-            <h2 id="section-13"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/forms.html">¶</a> Forms Builder</h2>            
+            <h2 id="section-13"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/forms.html">¶</a> Forms Builder</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END FORM -->   
+            <!-- END FORM -->
 
             <!-- BEGIN VALIDATION -->
-            <h2 id="section-14"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/validation.html">¶</a> Validation</h2>            
+            <h2 id="section-14"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/validation.html">¶</a> Validation</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END VALIDATION --> 
+            <!-- END VALIDATION -->
 
             <!-- BEGIN FLASH -->
-            <h2 id="section-15"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/flash.html">¶</a> Flash Messages</h2>            
+            <h2 id="section-15"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/flash.html">¶</a> Flash Messages</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END FLASH -->  
+            <!-- END FLASH -->
 
             <!-- BEGIN CACHE -->
-            <h2 id="section-16"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cache.html">¶</a> Cache</h2>            
+            <h2 id="section-16"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cache.html">¶</a> Cache</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END CACHE --> 
+            <!-- END CACHE -->
 
             <!-- BEGIN PAGINATION -->
-            <h2 id="section-17"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/pagination.html">¶</a> Pagination</h2>            
+            <h2 id="section-17"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/pagination.html">¶</a> Pagination</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END PAGINATION --> 
+            <!-- END PAGINATION -->
 
             <!-- BEGIN ANNOTATIONS -->
-            <h2 id="section-18"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/annotations.html">¶</a> Annotations</h2>            
+            <h2 id="section-18"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/annotations.html">¶</a> Annotations</h2>
                         <pre>
                 <code class="php">
 /**
@@ -919,28 +919,76 @@ foreach ($annotations as $annotation) {
                 </code>
                 </pre>
             <hr>
-            <!-- END ANNOTATIONS --> 
+            <!-- END ANNOTATIONS -->
 
             <!-- BEGIN SECURITY -->
-            <h2 id="section-19"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/security.html">¶</a> Security</h2>            
-            <i>Pending contribution...</i>
+            <h2 id="section-19"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/security.html">¶</a> Security</h2>
+            <pre>
+                <code class="php">
+// Storing a hased password
+use Phalcon\Mvc\Controller;
+
+$user = new Users();
+
+$username = $this->request->getPost('username');
+$password = $this->request->getPost('password');
+
+$user->username = $username;
+$user->password = $this->security->hash($password);
+
+$user->save();
+
+
+// A basic example of validating a login attempt
+use Phalcon\Mvc\Controller;
+
+$username = $this->request->getPost('username');
+$password = $this->request->getPost('password');
+
+$user = Users::findFirst([
+    conditions => "username = ?1",
+    bind => [1 => $username]
+]);
+
+if ($user) {
+    if ($this->security->checkHash($password, $user->password)) {
+        // The password is valid
+    }
+}
+
+
+// Setting a csrf token in a form
+&lt;input type=&quot;hidden&quot; name=&quot;&lt;?=$this-&gt;security-&gt;getTokenKey()?&gt;&quot; value=&quot;&lt;?=$this-&gt;security-&gt;getToken()?&gt;&quot;/&gt;
+
+
+// Checking a csrf token after a form submit
+use Phalcon\Mvc\Controller;
+
+if ($this->request->isPost()) {
+    if ($this->security->checkToken()) {
+        // The token is valid
+    }
+}
+
+                </code>
+            </pre>
             <hr>
-            <!-- END SECURITY -->   
+            <!-- END SECURITY -->
 
             <!-- BEGIN TRANSLATE -->
-            <h2 id="section-20"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/translate.html">¶</a> Translations</h2>            
+            <h2 id="section-20"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/translate.html">¶</a> Translations</h2>
             <i>Pending contribution...</i>
             <hr>
             <!-- END TRANSLATE -->
 
             <!-- BEGIN ASSETS -->
-            <h2 id="section-21"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/assets.html">¶</a> Assets Management</h2>            
+            <h2 id="section-21"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/assets.html">¶</a> Assets Management</h2>
             <i>Pending contribution...</i>
             <hr>
-            <!-- END ASSETS -->  
+            <!-- END ASSETS -->
 
             <!-- BEGIN LOADER -->
-            <h2 id="section-22"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/loader.html">¶</a> Universal Auto-Loader</h2>            
+            <h2 id="section-22"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/loader.html">¶</a> Universal Auto-Loader</h2>
             <pre>
                 <code class="php">
 // Setting namespaces
@@ -951,18 +999,18 @@ $loader->registerNamespaces(
     )
 );
                 </code>
-            </pre> 
+            </pre>
             <hr>
-            <!-- END LOADER -->                                                                                                                                                                                                
+            <!-- END LOADER -->
 
             <!-- BEGIN LOGGING -->
-            <h2 id="section-23"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/logging.html">¶</a> Logging</h2>            
+            <h2 id="section-23"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/logging.html">¶</a> Logging</h2>
             <i>Pending contribution...</i>
             <hr>
             <!-- END LOGGING -->
 
             <!-- BEGIN CLI -->
-            <h2 id="section-24"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cli.html">¶</a> CLI</h2>            
+            <h2 id="section-24"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cli.html">¶</a> CLI</h2>
             <i>Pending contribution...</i>
             <hr>
             <!-- END CLI -->
@@ -980,11 +1028,11 @@ $loader->registerNamespaces(
 $(document).ready(function(){
     hljs.initHighlightingOnLoad();
     $("#sections-list").affix({
-        offset: { 
+        offset: {
             top: 0
         }
     });
 });
 </script>
 
-</html>                                		
+</html>
