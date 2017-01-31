@@ -841,7 +841,90 @@ $request->isPut();
 
             <!-- BEGIN PAGINATION -->
             <h2 id="section-17"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/pagination.html">¶</a> Pagination</h2>
-            <i>Pending contribution...</i>
+            <pre>
+                <code class="php">
+// Current page from request
+$currentPage = $this->request->getQuery('page', 'int', 1);
+
+
+/*
+ * Pagination for model
+ */
+...
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+...
+// The data from database to paginate
+$articles = Articles::find();
+
+$paginator = new PaginatorModel(
+    [
+        "data"  => $articles,
+        "limit" => 3,
+        "page"  => $currentPage
+    ]
+);
+
+
+
+/*
+ * Pagination for arrays
+ */
+...
+use Phalcon\Paginator\Adapter\NativeArray as PaginatorArray;
+...
+// Passing an array as data
+$paginator = new PaginatorArray(
+    [
+        "data"  => [
+            ["id" => 1, "name" => "Article 1"],
+            ["id" => 2, "name" => "Article 2"],
+            ["id" => 3, "name" => "Article 3"]
+        ],
+        "limit" => 2,
+        "page"  => $currentPage,
+    ]
+);
+
+
+
+/*
+ * Pagination for QueryBuilder
+ */
+...
+use Phalcon\Paginator\Adapter\QueryBuilder as PaginatorQueryBuilder;
+...
+$builder = $this->modelsManager->createBuilder()
+    ->columns("id, name")
+    ->from("Articles")
+    ->orderBy("name");
+
+// Passing a QueryBuilder object as data
+$paginator = new PaginatorQueryBuilder(
+    [
+        "builder" => $builder,
+        "limit"   => 20,
+        "page"    => $currentPage,
+    ]
+);
+
+
+// Get the result for current page
+$pageData = $paginator->getPaginate();
+
+/*
+ * $pageData has the following attributes:
+ *
+ * $pageData->items - your items from model per page (as much as %limit%)
+ * $pageData->before - previous page
+ * $pageData->next - next page
+ * $pageData->last - last page
+ * $pageData->current - current page
+ * $pageData->total_pages - total number of pages
+ * $pageData->total_items - total number of items
+ *
+ */
+		        </code>
+            </pre>
             <hr>
             <!-- END PAGINATION -->
 
