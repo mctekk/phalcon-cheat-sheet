@@ -799,7 +799,79 @@ $request->isPut();
 
             <!-- BEGIN COOKIES -->
             <h2 id="section-10"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cookies.html">¶</a> Cookies</h2>
-            <i>Pending contribution...</i>
+            <pre>
+                <code class="php">
+// Check if cookie exists
+$this->cookies->has("session-data");
+
+// Get cookie by name
+$myCookie = $this->cookies->get("session-data");
+
+// Get the cookie attributes
+$myCookie->getValue();         //value
+$myCookie->getPath();          //site path
+$myCookie->getName();          //cookie name
+$myCookie->getExpiration();    //expire time (unix timestamp) int
+$myCookie->getDomain();        //cookie domain
+$myCookie->getHttpOnly();      //is http only
+$myCookie->getSecure();        //is secured
+
+
+/*
+ * Set the cookie
+ * Full set of params:
+ * set(
+ *      mixed $name,
+ *      [mixed $value],
+ *      [mixed $expire],
+ *      [mixed $path],
+ *      [mixed $secure],
+ *      [mixed $domain],
+ *      [mixed $httpOnly]
+ * )
+ */
+$this->cookies->set(
+    "session-data",
+    "some value",
+    time() + 3600
+);
+
+// Delete the cookie
+$this->cookies->get("session-data")->delete();
+
+
+// By default cookies are encrypted automatically
+
+// Disable encryption
+use Phalcon\Http\Response\Cookies;
+
+$di->set(
+    "cookies",
+    function () {
+        $cookies = new Cookies();
+
+        $cookies->useEncryption(false);
+
+        return $cookies;
+    }
+);
+
+// Use encryption with own key in Crypt service
+use Phalcon\Crypt;
+
+$di->set(
+    "crypt",
+    function () {
+        $crypt = new Crypt();
+
+        $crypt->setKey('@2sdj8%%dp?.to/..j123D$'); // Use your own key!
+
+        return $crypt;
+    }
+);
+
+                </code>
+            </pre>
             <hr>
             <!-- END COOKIES -->
 
