@@ -799,7 +799,79 @@ $request->isPut();
 
             <!-- BEGIN COOKIES -->
             <h2 id="section-10"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/cookies.html">¶</a> Cookies</h2>
-            <i>Pending contribution...</i>
+            <pre>
+                <code class="php">
+// Check if cookie exists
+$this->cookies->has("session-data");
+
+// Get cookie by name
+$myCookie = $this->cookies->get("session-data");
+
+// Get the cookie attributes
+$myCookie->getValue();         //value
+$myCookie->getPath();          //site path
+$myCookie->getName();          //cookie name
+$myCookie->getExpiration();    //expire time (unix timestamp) int
+$myCookie->getDomain();        //cookie domain
+$myCookie->getHttpOnly();      //is http only
+$myCookie->getSecure();        //is secured
+
+
+/*
+ * Set the cookie
+ * Full set of params:
+ * set(
+ *      mixed $name,
+ *      [mixed $value],
+ *      [mixed $expire],
+ *      [mixed $path],
+ *      [mixed $secure],
+ *      [mixed $domain],
+ *      [mixed $httpOnly]
+ * )
+ */
+$this->cookies->set(
+    "session-data",
+    "some value",
+    time() + 3600
+);
+
+// Delete the cookie
+$this->cookies->get("session-data")->delete();
+
+
+// By default cookies are encrypted automatically
+
+// Disable encryption
+use Phalcon\Http\Response\Cookies;
+
+$di->set(
+    "cookies",
+    function () {
+        $cookies = new Cookies();
+
+        $cookies->useEncryption(false);
+
+        return $cookies;
+    }
+);
+
+// Use encryption with own key in Crypt service
+use Phalcon\Crypt;
+
+$di->set(
+    "crypt",
+    function () {
+        $crypt = new Crypt();
+
+        $crypt->setKey('@2sdj8%%dp?.to/..j123D$'); // Use your own key!
+
+        return $crypt;
+    }
+);
+
+                </code>
+            </pre>
             <hr>
             <!-- END COOKIES -->
 
@@ -841,7 +913,90 @@ $request->isPut();
 
             <!-- BEGIN PAGINATION -->
             <h2 id="section-17"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/pagination.html">¶</a> Pagination</h2>
-            <i>Pending contribution...</i>
+            <pre>
+                <code class="php">
+// Current page from request
+$currentPage = $this->request->getQuery('page', 'int', 1);
+
+
+/*
+ * Pagination for model
+ */
+...
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+...
+// The data from database to paginate
+$articles = Articles::find();
+
+$paginator = new PaginatorModel(
+    [
+        "data"  => $articles,
+        "limit" => 3,
+        "page"  => $currentPage
+    ]
+);
+
+
+
+/*
+ * Pagination for arrays
+ */
+...
+use Phalcon\Paginator\Adapter\NativeArray as PaginatorArray;
+...
+// Passing an array as data
+$paginator = new PaginatorArray(
+    [
+        "data"  => [
+            ["id" => 1, "name" => "Article 1"],
+            ["id" => 2, "name" => "Article 2"],
+            ["id" => 3, "name" => "Article 3"]
+        ],
+        "limit" => 2,
+        "page"  => $currentPage,
+    ]
+);
+
+
+
+/*
+ * Pagination for QueryBuilder
+ */
+...
+use Phalcon\Paginator\Adapter\QueryBuilder as PaginatorQueryBuilder;
+...
+$builder = $this->modelsManager->createBuilder()
+    ->columns("id, name")
+    ->from("Articles")
+    ->orderBy("name");
+
+// Passing a QueryBuilder object as data
+$paginator = new PaginatorQueryBuilder(
+    [
+        "builder" => $builder,
+        "limit"   => 20,
+        "page"    => $currentPage,
+    ]
+);
+
+
+// Get the result for current page
+$pageData = $paginator->getPaginate();
+
+/*
+ * $pageData has the following attributes:
+ *
+ * $pageData->items - your items from model per page (as much as %limit%)
+ * $pageData->before - previous page
+ * $pageData->next - next page
+ * $pageData->last - last page
+ * $pageData->current - current page
+ * $pageData->total_pages - total number of pages
+ * $pageData->total_items - total number of items
+ *
+ */
+		        </code>
+            </pre>
             <hr>
             <!-- END PAGINATION -->
 
