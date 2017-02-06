@@ -877,7 +877,62 @@ $di->set(
 
             <!-- BEGIN ESCAPING -->
             <h2 id="section-11"><a class="headerlink" href="http://docs.phalconphp.com/en/latest/reference/escaper.html">¶</a> Escaping</h2>
-            <i>Pending contribution...</i>
+            <pre>
+                <code class="php">
+use Phalcon\Escaper;
+
+// Create an escaper
+$escaper = new Escaper();
+
+/*
+ * Settings
+ */
+
+// Set the encoding to be used by the escaper
+$escaper->setEncoding('utf-8');
+
+// Set the HTML quoting type for htmlspecialchars
+$escaper->setHtmlQuoteType(ENT_XHTML);
+
+// Set the double_encode to be used by the escaper
+$escaper->setDoubleEncode(false);
+
+/*
+ * Escaping examples
+ */
+
+$maliciousData = $_GET['data'];
+
+// Escaping HTML
+$secureData = $escaper->escapeHtml($maliciousParam);
+
+// Escaping HTML Attributes
+$secureData = $escaper->escapeHtmlAttr($maliciousParam);
+
+// Escaping CSS
+$secureData = $escaper->escapeCss($maliciousParam);
+
+// Escaping JavaScript
+$secureData = $escaper->escapeJs($maliciousParam);
+
+// Escaping URLs
+$secureData = $escaper->escapeUrl($maliciousParam);
+
+/*
+ * Useful functionality
+ */
+
+// Get the internal encoding used by the escaper
+$escaper->getEncoding();
+
+// Detect the character encoding of a string to be handled by an encoder Special-handling for chr(172) and chr(128) to chr(159) which fail to be detected by mb_detect_encoding()
+$escaper->detectEncoding($maliciousParam)
+
+// Utility to normalize a string’s encoding to UTF-32
+$escaper->normalizeEncoding($maliciousParam)
+
+                </code>
+            </pre>
             <hr>
             <!-- END ESCAPING -->
 
